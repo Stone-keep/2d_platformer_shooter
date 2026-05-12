@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://bu6blwy17qh2s"]
+
+[ext_resource type="Script" uid="uid://b5del6y0yh3ua" path="res://characters/player.gd" id="1_dnjla"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6p3mc"]
+radius = 18.0
+height = 62.0
+
+[node name="Player" type="CharacterBody2D" unique_id=1129127801]
+script = ExtResource("1_dnjla")
+
+[node name="PlayerCollision" type="CollisionShape2D" parent="." unique_id=1597080963]
+shape = SubResource("CapsuleShape2D_6p3mc")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1403148867]
+zoom = Vector2(2, 2)
+
+[node name="ReloadTimer" type="Timer" parent="." unique_id=1909327938]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]
