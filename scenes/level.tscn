@@ -24,4 +24,6 @@ shape = SubResource("RectangleShape2D_rd3vj")
 [node name="Player" parent="Characters" unique_id=1129127801 instance=ExtResource("1_2q6dc")]
 position = Vector2(379, 197)
 
+[node name="Bullets" type="Node2D" parent="." unique_id=1562904681]
+
 [connection signal="player_shot" from="Characters/Player" to="." method="_on_player_shot"]

@@ -13,7 +13,7 @@ script = ExtResource("1_dnjla")
 shape = SubResource("CapsuleShape2D_6p3mc")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1403148867]
-zoom = Vector2(2, 2)
+zoom = Vector2(1.5, 1.5)
 
 [node name="ReloadTimer" type="Timer" parent="." unique_id=1909327938]
 wait_time = 0.5

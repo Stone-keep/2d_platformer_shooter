@@ -1,6 +1,5 @@
 extends CharacterBody2D
 
-
 const SPEED := 200.0
 const FRICTION := SPEED / 0.1
 const JUMP_STRENGTH := 400.0
@@ -32,8 +31,7 @@ func handle_gravity(delta: float) -> void:
 		velocity += get_gravity() * delta * GRAVITY_FACTOR
 
 func shoot():
-	print("pew pew")
-	player_shot.emit(position, get_local_mouse_position())
+	player_shot.emit(position, get_local_mouse_position().normalized())
 	can_shoot = false
 	$ReloadTimer.start()
 
