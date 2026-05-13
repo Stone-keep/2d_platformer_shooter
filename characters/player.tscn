@@ -1,22 +1,127 @@
 [gd_scene format=3 uid="uid://bu6blwy17qh2s"]
 
 [ext_resource type="Script" uid="uid://b5del6y0yh3ua" path="res://characters/player.gd" id="1_dnjla"]
+[ext_resource type="Texture2D" uid="uid://de5wf7al0hknv" path="res://graphics/characters/player.png" id="2_3eadt"]
+[ext_resource type="Texture2D" uid="uid://otyoj5px7yk7" path="res://graphics/ui/crosshair.png" id="3_tory2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6p3mc"]
-radius = 18.0
-height = 62.0
+radius = 8.0
+height = 34.0
+
+[sub_resource type="Animation" id="Animation_tory2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerLegs:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [15]
+}
+
+[sub_resource type="Animation" id="Animation_x0jl3"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerLegs:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [16]
+}
+
+[sub_resource type="Animation" id="Animation_evndh"]
+resource_name = "jump"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerLegs:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [17]
+}
+
+[sub_resource type="Animation" id="Animation_3eadt"]
+resource_name = "run"
+length = 1.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerLegs:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [9, 10, 11, 12, 13, 14, 15]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tory2"]
+_data = {
+&"RESET": SubResource("Animation_tory2"),
+&"idle": SubResource("Animation_x0jl3"),
+&"jump": SubResource("Animation_evndh"),
+&"run": SubResource("Animation_3eadt")
+}
 
 [node name="Player" type="CharacterBody2D" unique_id=1129127801]
+collision_layer = 2
+collision_mask = 5
 script = ExtResource("1_dnjla")
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="." unique_id=1597080963]
+position = Vector2(1, 2)
 shape = SubResource("CapsuleShape2D_6p3mc")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1403148867]
-zoom = Vector2(1.5, 1.5)
+position = Vector2(0, -8)
+zoom = Vector2(3.5, 3.5)
+limit_left = 160
+limit_top = 60
+limit_right = 2470
 
 [node name="ReloadTimer" type="Timer" parent="." unique_id=1909327938]
 wait_time = 0.5
 one_shot = true
+
+[node name="PlayerLegs" type="Sprite2D" parent="." unique_id=2067987551]
+position = Vector2(0, -6)
+texture = ExtResource("2_3eadt")
+hframes = 8
+vframes = 3
+frame = 15
+
+[node name="PlayerTorso" type="Sprite2D" parent="." unique_id=387151960]
+position = Vector2(0, -7)
+texture = ExtResource("2_3eadt")
+hframes = 8
+vframes = 3
+frame = 1
+
+[node name="PlayerAnimation" type="AnimationPlayer" parent="." unique_id=1754088397]
+libraries/ = SubResource("AnimationLibrary_tory2")
+autoplay = &"idle"
+
+[node name="Crosshair" type="Sprite2D" parent="." unique_id=602292783]
+y_sort_enabled = true
+position = Vector2(21, -13)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_tory2")
 
 [connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]

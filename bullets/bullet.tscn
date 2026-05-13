@@ -8,6 +8,9 @@ radius = 2.0
 height = 8.0
 
 [node name="Bullet" type="Area2D" unique_id=1554255341]
+y_sort_enabled = true
+collision_layer = 8
+collision_mask = 5
 script = ExtResource("1_3ndsa")
 
 [node name="BulletSprite" type="Sprite2D" parent="." unique_id=37816803]
