@@ -13,7 +13,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerLegs:frame")
+tracks/0/path = NodePath("LegsSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -29,7 +29,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerLegs:frame")
+tracks/0/path = NodePath("LegsSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -45,7 +45,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerLegs:frame")
+tracks/0/path = NodePath("LegsSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -62,7 +62,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerLegs:frame")
+tracks/0/path = NodePath("LegsSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -85,7 +85,7 @@ collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_dnjla")
 
-[node name="PlayerCollision" type="CollisionShape2D" parent="." unique_id=1597080963]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1597080963]
 position = Vector2(1, 2)
 shape = SubResource("CapsuleShape2D_6p3mc")
 
@@ -100,21 +100,21 @@ limit_right = 2470
 wait_time = 0.5
 one_shot = true
 
-[node name="PlayerLegs" type="Sprite2D" parent="." unique_id=2067987551]
+[node name="LegsSprite" type="Sprite2D" parent="." unique_id=2067987551]
 position = Vector2(0, -6)
 texture = ExtResource("2_3eadt")
 hframes = 8
 vframes = 3
 frame = 15
 
-[node name="PlayerTorso" type="Sprite2D" parent="." unique_id=387151960]
+[node name="TorsoSprite" type="Sprite2D" parent="." unique_id=387151960]
 position = Vector2(0, -7)
 texture = ExtResource("2_3eadt")
 hframes = 8
 vframes = 3
 frame = 1
 
-[node name="PlayerAnimation" type="AnimationPlayer" parent="." unique_id=1754088397]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1754088397]
 libraries/ = SubResource("AnimationLibrary_tory2")
 autoplay = &"idle"
 

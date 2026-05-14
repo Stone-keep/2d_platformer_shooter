@@ -40,22 +40,22 @@ func handle_movement(delta: float) -> void:
 	if is_on_floor():
 		if direction:
 			velocity.x = direction * SPEED
-			$PlayerLegs.flip_h = direction < 0
-			$PlayerAnimation.current_animation = "run"
+			$LegsSprite.flip_h = direction < 0
+			$AnimationPlayer.current_animation = "run"
 		else:
 			velocity.x = move_toward(velocity.x, 0, FRICTION * delta)
-			$PlayerAnimation.current_animation = "idle"
+			$AnimationPlayerPlayer.current_animation = "idle"
 	else:
 		if direction:
 			velocity.x = direction * SPEED
-			$PlayerLegs.flip_h = direction < 0
+			$LegsSprite.flip_h = direction < 0
 
 		$PlayerAnimation.current_animation = "jump"
 
 func handle_torso_animation() -> void:
 	var mouse_position = get_local_mouse_position().normalized()
 	var rounded_position = Vector2i(round(mouse_position.x), round(mouse_position.y))
-	$PlayerTorso.frame = gun_directions[rounded_position]
+	$TorsoSprite.frame = gun_directions[rounded_position]
 
 func handle_gravity(delta: float) -> void:
 	if not is_on_floor():
