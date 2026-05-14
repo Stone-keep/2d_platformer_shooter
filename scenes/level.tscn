@@ -3287,6 +3287,63 @@ position = Vector2(379, 197)
 [node name="Drone" parent="Characters/Drones" unique_id=1338547764 instance=ExtResource("5_ppgk2")]
 position = Vector2(1042, 171)
 
+[node name="Drone20" parent="Characters/Drones" unique_id=378681873 instance=ExtResource("5_ppgk2")]
+position = Vector2(1042, 157)
+
+[node name="Drone2" parent="Characters/Drones" unique_id=873422091 instance=ExtResource("5_ppgk2")]
+position = Vector2(1370, 159)
+
+[node name="Drone3" parent="Characters/Drones" unique_id=440077528 instance=ExtResource("5_ppgk2")]
+position = Vector2(1805, 155)
+
+[node name="Drone4" parent="Characters/Drones" unique_id=1022447729 instance=ExtResource("5_ppgk2")]
+position = Vector2(2178, 173)
+
+[node name="Drone5" parent="Characters/Drones" unique_id=1702939959 instance=ExtResource("5_ppgk2")]
+position = Vector2(2178, 151)
+
+[node name="Drone6" parent="Characters/Drones" unique_id=1396869435 instance=ExtResource("5_ppgk2")]
+position = Vector2(1908, 431)
+
+[node name="Drone7" parent="Characters/Drones" unique_id=1923022079 instance=ExtResource("5_ppgk2")]
+position = Vector2(1651, 431)
+
+[node name="Drone8" parent="Characters/Drones" unique_id=1098205863 instance=ExtResource("5_ppgk2")]
+position = Vector2(1345, 422)
+
+[node name="Drone9" parent="Characters/Drones" unique_id=1539445111 instance=ExtResource("5_ppgk2")]
+position = Vector2(907, 433)
+
+[node name="Drone10" parent="Characters/Drones" unique_id=131544380 instance=ExtResource("5_ppgk2")]
+position = Vector2(318, 439)
+
+[node name="Drone11" parent="Characters/Drones" unique_id=310617231 instance=ExtResource("5_ppgk2")]
+position = Vector2(346, 439)
+
+[node name="Drone12" parent="Characters/Drones" unique_id=864334884 instance=ExtResource("5_ppgk2")]
+position = Vector2(576, 707)
+
+[node name="Drone13" parent="Characters/Drones" unique_id=611199037 instance=ExtResource("5_ppgk2")]
+position = Vector2(891, 688)
+
+[node name="Drone14" parent="Characters/Drones" unique_id=229191723 instance=ExtResource("5_ppgk2")]
+position = Vector2(1114, 764)
+
+[node name="Drone15" parent="Characters/Drones" unique_id=1993229300 instance=ExtResource("5_ppgk2")]
+position = Vector2(1393, 707)
+
+[node name="Drone16" parent="Characters/Drones" unique_id=181863825 instance=ExtResource("5_ppgk2")]
+position = Vector2(1738, 706)
+
+[node name="Drone17" parent="Characters/Drones" unique_id=955025886 instance=ExtResource("5_ppgk2")]
+position = Vector2(2168, 719)
+
+[node name="Drone18" parent="Characters/Drones" unique_id=509957057 instance=ExtResource("5_ppgk2")]
+position = Vector2(2234, 715)
+
+[node name="Drone19" parent="Characters/Drones" unique_id=1390558878 instance=ExtResource("5_ppgk2")]
+position = Vector2(2202, 752)
+
 [node name="Bullets" type="Node2D" parent="." unique_id=1562904681]
 
 [connection signal="player_shot" from="Characters/Player" to="." method="_on_player_shot"]

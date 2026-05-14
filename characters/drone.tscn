@@ -55,6 +55,20 @@ tracks/0/keys = {
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 7]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"explosion_aoe_damage"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_ljk1q"]
 resource_name = "fly"
@@ -83,6 +97,9 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_3xcvv"]
 radius = 11.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_5rs0l"]
+radius = 26.019224
+
 [node name="Drone" type="CharacterBody2D" unique_id=1338547764 groups=["enemies"]]
 y_sort_enabled = true
 collision_layer = 4
@@ -109,11 +126,11 @@ hframes = 4
 libraries/ = SubResource("AnimationLibrary_83g50")
 autoplay = &"fly"
 
-[node name="Area2D" type="Area2D" parent="." unique_id=712575673]
+[node name="HurtBox" type="Area2D" parent="." unique_id=712575673]
 collision_layer = 4
 collision_mask = 10
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=753282730]
+[node name="HurtBoxShape" type="CollisionShape2D" parent="HurtBox" unique_id=753282730]
 position = Vector2(0, -1)
 shape = SubResource("CircleShape2D_3xcvv")
 
@@ -122,9 +139,17 @@ rect = Rect2(-10, -9, 21, 17)
 
 [node name="Explosion" type="Sprite2D" parent="." unique_id=276063810]
 visible = false
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.7, 0.7)
 texture = ExtResource("3_83g50")
 hframes = 8
 
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[node name="ExplosionRange" type="Area2D" parent="." unique_id=362405375]
+collision_layer = 4
+collision_mask = 7
+
+[node name="ExplosionShape" type="CollisionShape2D" parent="ExplosionRange" unique_id=862437965]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_5rs0l")
+
+[connection signal="area_entered" from="HurtBox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="body_entered" from="HurtBox" to="." method="_on_hurtbox_body_entered"]

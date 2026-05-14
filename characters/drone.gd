@@ -21,13 +21,23 @@ func explode() -> void:
 		return
 	is_exploding = true
 	velocity = Vector2.ZERO
-	$Sprite2D.visible = false
-	$Explosion.visible = true
+	$Sprite2D.hide()
+	$Explosion.show()
 	$AnimationPlayer.play("explosion")
 	await $AnimationPlayer.animation_finished
 	queue_free()
 
-func _on_area_2d_area_entered(area: Area2D) -> void:
+func explosion_aoe_damage() -> void:
+	var overlapping = $ExplosionRange.get_overlapping_bodies()
+	for body in overlapping:
+		if body == self:
+			continue
+		elif body.is_in_group("player"):
+			body.take_damage()
+		elif body.is_in_group("enemies"):
+			body.explode()
+
+func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if not area.is_in_group("bullets"):
 		return
 	health -= 1
@@ -36,6 +46,6 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	if health <= 0:
 		explode()
 
-func _on_area_2d_body_entered(body: Node2D) -> void:
+func _on_hurtbox_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		explode()

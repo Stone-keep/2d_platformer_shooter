@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 const SPEED := 100.0
 const FRICTION := SPEED / 0.1
-const JUMP_STRENGTH := 300.0
+const JUMP_STRENGTH := 350.0
 const GRAVITY_FACTOR := 1.0
 var direction: float
 var can_shoot := true
@@ -77,6 +77,9 @@ func try_shoot() -> void:
 func handle_crosshair_position() -> void:
 	var mouse_position = get_local_mouse_position().normalized()
 	$Crosshair.position = mouse_position * 50
+
+func take_damage():
+	print("damage taken")
 
 func _on_reload_timer_timeout() -> void:
 	can_shoot = true
