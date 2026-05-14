@@ -4,6 +4,15 @@
 [ext_resource type="Script" uid="uid://dq85k8dxmkplg" path="res://characters/drone.gd" id="1_ljk1q"]
 [ext_resource type="Texture2D" uid="uid://bav7n447bnsa5" path="res://graphics/fire/explosion.png" id="3_83g50"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_j5kob"]
+radius = 6.0827627
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ljk1q"]
+radius = 4.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_83g50"]
+radius = 4.1231055
+
 [sub_resource type="Animation" id="Animation_j5kob"]
 length = 0.001
 tracks/0/type = "value"
@@ -71,20 +80,26 @@ _data = {
 &"fly": SubResource("Animation_ljk1q")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_j5kob"]
-radius = 6.0827627
+[sub_resource type="CircleShape2D" id="CircleShape2D_3xcvv"]
+radius = 11.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ljk1q"]
-radius = 4.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_83g50"]
-radius = 4.1231055
-
-[node name="Drone" type="CharacterBody2D" unique_id=1338547764]
+[node name="Drone" type="CharacterBody2D" unique_id=1338547764 groups=["enemies"]]
 y_sort_enabled = true
 collision_layer = 4
 collision_mask = 11
 script = ExtResource("1_ljk1q")
+
+[node name="CollisionBody" type="CollisionShape2D" parent="." unique_id=1824903608]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_j5kob")
+
+[node name="CollisionLeftRotor" type="CollisionShape2D" parent="." unique_id=453518351]
+position = Vector2(-6, -4)
+shape = SubResource("CircleShape2D_ljk1q")
+
+[node name="CollisionRightRotor" type="CollisionShape2D" parent="." unique_id=170681550]
+position = Vector2(7, -4)
+shape = SubResource("CircleShape2D_83g50")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=278565536]
 texture = ExtResource("1_j5kob")
@@ -94,22 +109,22 @@ hframes = 4
 libraries/ = SubResource("AnimationLibrary_83g50")
 autoplay = &"fly"
 
-[node name="CollisionBody" type="CollisionShape2D" parent="." unique_id=1169038182]
-position = Vector2(0, 2)
-shape = SubResource("CircleShape2D_j5kob")
+[node name="Area2D" type="Area2D" parent="." unique_id=712575673]
+collision_layer = 4
+collision_mask = 10
 
-[node name="CollisionLeftRotor" type="CollisionShape2D" parent="." unique_id=614442135]
-position = Vector2(-6, -4)
-shape = SubResource("CircleShape2D_ljk1q")
-
-[node name="CollisionRightRotor" type="CollisionShape2D" parent="." unique_id=1884472172]
-position = Vector2(7, -4)
-shape = SubResource("CircleShape2D_83g50")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=753282730]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_3xcvv")
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." unique_id=982179289]
 rect = Rect2(-10, -9, 21, 17)
 
 [node name="Explosion" type="Sprite2D" parent="." unique_id=276063810]
+visible = false
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_83g50")
 hframes = 8
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

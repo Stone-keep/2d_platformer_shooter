@@ -80,13 +80,19 @@ _data = {
 &"run": SubResource("Animation_3eadt")
 }
 
-[node name="Player" type="CharacterBody2D" unique_id=1129127801]
+[node name="Player" type="CharacterBody2D" unique_id=1129127801 groups=["player"]]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_dnjla")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1597080963]
-position = Vector2(1, 2)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2012169306]
+position = Vector2(-1, 2)
+shape = SubResource("CapsuleShape2D_6p3mc")
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=1352652734]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1597080963]
+position = Vector2(-1, 2)
 shape = SubResource("CapsuleShape2D_6p3mc")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1403148867]

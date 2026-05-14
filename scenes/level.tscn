@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://bckes2x0bav5e" path="res://scenes/level.gd" id="1_w7c3h"]
 [ext_resource type="Texture2D" uid="uid://cgh7234wked4l" path="res://graphics/tilesets/walls.png" id="3_mx8sn"]
 [ext_resource type="Texture2D" uid="uid://c7v0ifpdabs2i" path="res://graphics/tilesets/subway.png" id="3_w8frs"]
+[ext_resource type="PackedScene" uid="uid://5dalu1fxud6b" path="res://characters/drone.tscn" id="5_ppgk2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b121j"]
 texture = ExtResource("3_w8frs")
@@ -3281,11 +3282,11 @@ tile_set = SubResource("TileSet_b121j")
 [node name="Player" parent="Characters" unique_id=1129127801 instance=ExtResource("1_2q6dc")]
 position = Vector2(379, 197)
 
+[node name="Drones" type="Node2D" parent="Characters" unique_id=755856068]
+
+[node name="Drone" parent="Characters/Drones" unique_id=1338547764 instance=ExtResource("5_ppgk2")]
+position = Vector2(1042, 171)
+
 [node name="Bullets" type="Node2D" parent="." unique_id=1562904681]
-
-[node name="DroneMarkers" type="Node2D" parent="." unique_id=1148122219]
-
-[node name="Marker2D" type="Marker2D" parent="DroneMarkers" unique_id=512722879]
-position = Vector2(1000, 177)
 
 [connection signal="player_shot" from="Characters/Player" to="." method="_on_player_shot"]

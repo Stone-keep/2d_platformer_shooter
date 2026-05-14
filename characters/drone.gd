@@ -1,10 +1,41 @@
 extends CharacterBody2D
 
 
-const SPEED = 300.0
+const SPEED = 50.0
+var health := 3
 var direction := Vector2.ZERO
-
+var is_exploding := false
 
 func _physics_process(_delta: float) -> void:
+	if is_exploding:
+		return
+	var player := get_tree().get_first_node_in_group("player")
+	if player == null:
+		return
+	direction = global_position.direction_to(player.global_position)
 	velocity = direction * SPEED
 	move_and_slide()
+	
+func explode() -> void:
+	if is_exploding:
+		return
+	is_exploding = true
+	velocity = Vector2.ZERO
+	$Sprite2D.visible = false
+	$Explosion.visible = true
+	$AnimationPlayer.play("explosion")
+	await $AnimationPlayer.animation_finished
+	queue_free()
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	if not area.is_in_group("bullets"):
+		return
+	health -= 1
+	if not is_exploding:
+		area.queue_free()
+	if health <= 0:
+		explode()
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		explode()

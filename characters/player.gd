@@ -44,13 +44,13 @@ func handle_movement(delta: float) -> void:
 			$AnimationPlayer.current_animation = "run"
 		else:
 			velocity.x = move_toward(velocity.x, 0, FRICTION * delta)
-			$AnimationPlayerPlayer.current_animation = "idle"
+			$AnimationPlayer.current_animation = "idle"
 	else:
 		if direction:
 			velocity.x = direction * SPEED
 			$LegsSprite.flip_h = direction < 0
 
-		$PlayerAnimation.current_animation = "jump"
+		$AnimationPlayer.current_animation = "jump"
 
 func handle_torso_animation() -> void:
 	var mouse_position = get_local_mouse_position().normalized()
