@@ -2,8 +2,10 @@
 
 [ext_resource type="Texture2D" uid="uid://vyr0ks75oxum" path="res://graphics/characters/drone.png" id="1_j5kob"]
 [ext_resource type="Script" uid="uid://dq85k8dxmkplg" path="res://characters/drone.gd" id="1_ljk1q"]
+[ext_resource type="Shader" uid="uid://dwahplw3qyfm0" path="res://shaders/drone.tres" id="2_5rs0l"]
 [ext_resource type="Texture2D" uid="uid://bav7n447bnsa5" path="res://graphics/fire/explosion.png" id="3_83g50"]
 [ext_resource type="Texture2D" uid="uid://dijla4pisrrw8" path="res://graphics/lights/main.png" id="4_3xcvv"]
+[ext_resource type="AudioStream" uid="uid://dtnqyh7corvdx" path="res://audio/explosion.wav" id="6_bvpmj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j5kob"]
 radius = 6.0827627
@@ -13,6 +15,11 @@ radius = 4.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_83g50"]
 radius = 4.1231055
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3xcvv"]
+shader = ExtResource("2_5rs0l")
+shader_parameter/Color = Color(1, 1, 1, 1)
+shader_parameter/ColorProgress = 1.0
 
 [sub_resource type="Animation" id="Animation_j5kob"]
 length = 0.001
@@ -25,7 +32,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [0]
 }
 tracks/1/type = "value"
@@ -106,6 +113,21 @@ tracks/2/keys = {
 "update": 0,
 "values": [2.0, 0.0]
 }
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ExplosionSound")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("6_bvpmj")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/3/use_blend = true
 
 [sub_resource type="Animation" id="Animation_ljk1q"]
 resource_name = "fly"
@@ -120,7 +142,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
+"update": 0,
 "values": [0, 1, 2, 3]
 }
 tracks/1/type = "value"
@@ -171,6 +193,7 @@ position = Vector2(7, -4)
 shape = SubResource("CircleShape2D_83g50")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=278565536]
+material = SubResource("ShaderMaterial_3xcvv")
 texture = ExtResource("1_j5kob")
 hframes = 4
 
@@ -218,5 +241,9 @@ energy = 0.0
 texture = ExtResource("4_3xcvv")
 texture_scale = 0.3
 
-[connection signal="area_entered" from="HurtBox" to="." method="_on_hurtbox_area_entered"]
+[node name="ExplosionSound" type="AudioStreamPlayer2D" parent="." unique_id=444341502]
+volume_db = -10.0
+max_distance = 1000.0
+
+[connection signal="area_entered" from="HurtBox" to="." method="_on_hit"]
 [connection signal="body_entered" from="HurtBox" to="." method="_on_hurtbox_body_entered"]

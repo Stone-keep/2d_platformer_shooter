@@ -41,10 +41,16 @@ func explosion_aoe_damage() -> void:
 		elif body.is_in_group("enemies"):
 			body.explode()
 
-func _on_hurtbox_area_entered(area: Area2D) -> void:
+func on_hit_animation():
+	var tween = create_tween()
+	tween.tween_property($Sprite2D.material, "shader_parameter/ColorProgress", 0.0, 0.15)
+	tween.tween_property($Sprite2D.material, "shader_parameter/ColorProgress", 1.0, 0.15)
+
+func _on_hit(area: Area2D) -> void:
 	if not area.is_in_group("bullets"):
 		return
 	health -= 1
+	on_hit_animation()
 	if not is_exploding:
 		area.queue_free()
 	if health <= 0:
