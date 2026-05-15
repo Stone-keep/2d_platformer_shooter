@@ -7,6 +7,7 @@ const GRAVITY_FACTOR := 1.0
 var direction: float
 var can_shoot := true
 var health := 3
+var is_invulnerable = false
 
 var gun_directions = {
 	Vector2i(1, 0):   0,
@@ -20,6 +21,7 @@ var gun_directions = {
 }
 
 signal player_shot(pos: Vector2, dir: Vector2)
+signal health_changed(new_health: int)
 
 
 func _physics_process(delta: float) -> void:
@@ -75,14 +77,22 @@ func try_shoot() -> void:
 		return
 	shoot()
 
+func _on_reload_timer_timeout() -> void:
+	can_shoot = true
+
 func handle_crosshair_position() -> void:
 	var mouse_position = get_local_mouse_position().normalized()
 	$Crosshair.position = mouse_position * 50
 
 func take_damage():
+	if is_invulnerable:
+		return
+	is_invulnerable = true
+	$InvulnerabilityTimer.start()
 	health -= 1
+	health_changed.emit(health)
 	if health <= 0:
 		print("dead")
 
-func _on_reload_timer_timeout() -> void:
-	can_shoot = true
+func _on_invulnerability_timer_timeout() -> void:
+	is_invulnerable = false

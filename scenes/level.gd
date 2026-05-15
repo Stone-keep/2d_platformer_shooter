@@ -16,22 +16,24 @@ func pulse_sign_lights():
 		sign_light_tween.tween_property(sl, "energy", 1.0, 1)
 		sign_light_tween.tween_property(sl, "energy", 0.5, 1)
 
-func check_overlap(area, character):
+func is_overlapping(area, character):
 	var overlapping = area.get_overlapping_bodies()
 	return character in overlapping
 
 func enter_door():
 	if Input.is_action_just_pressed("enter"):
 		var player = $Characters/Player
-		if check_overlap($Areas/UpperDoor, player):
+		if is_overlapping($Areas/UpperDoor, player):
 			player.global_position = $Areas/MiddleDoor.global_position
-		elif check_overlap($Areas/MiddleDoor, player):
+		elif is_overlapping($Areas/MiddleDoor, player):
 			player.global_position = $Areas/UpperDoor.global_position
-		elif check_overlap($Areas/LowerDoor, player):
+		elif is_overlapping($Areas/LowerDoor, player):
 			print("game won")
-
 
 func _on_player_shot(pos: Vector2, dir: Vector2) -> void:
 	var bullet := bullet_scene.instantiate()
 	bullet.setup(pos, dir)
 	$Bullets.add_child(bullet)
+
+func _on_player_health_changed(new_health: int) -> void:
+	$HUD/Label.text = "Player Health: %s" % new_health

@@ -3266,6 +3266,17 @@ size = Vector2(118, 103)
 [node name="Level" type="Node2D" unique_id=355876852]
 script = ExtResource("1_w7c3h")
 
+[node name="HUD" type="CanvasLayer" parent="." unique_id=552851862]
+
+[node name="Label" type="Label" parent="HUD" unique_id=635671095]
+anchors_preset = -1
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 153.0
+offset_bottom = 28.0
+theme_override_font_sizes/font_size = 30
+text = "Player Health: 3"
+
 [node name="Layers" type="Node2D" parent="." unique_id=1088525389]
 
 [node name="Darkness" type="TileMapLayer" parent="Layers" unique_id=1703311296]
@@ -3530,4 +3541,5 @@ collision_mask = 2
 position = Vector2(24, 11.5)
 shape = SubResource("RectangleShape2D_b121j")
 
+[connection signal="health_changed" from="Characters/Player" to="." method="_on_player_health_changed"]
 [connection signal="player_shot" from="Characters/Player" to="." method="_on_player_shot"]

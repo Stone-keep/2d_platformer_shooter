@@ -134,4 +134,9 @@ texture = ExtResource("3_tory2")
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=1094675968]
 texture = ExtResource("4_x0jl3")
 
+[node name="InvulnerabilityTimer" type="Timer" parent="." unique_id=1521434331]
+wait_time = 0.3
+one_shot = true
+
 [connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]
+[connection signal="timeout" from="InvulnerabilityTimer" to="." method="_on_invulnerability_timer_timeout"]
