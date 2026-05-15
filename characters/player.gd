@@ -6,6 +6,7 @@ const JUMP_STRENGTH := 350.0
 const GRAVITY_FACTOR := 1.0
 var direction: float
 var can_shoot := true
+var health := 3
 
 var gun_directions = {
 	Vector2i(1, 0):   0,
@@ -79,7 +80,9 @@ func handle_crosshair_position() -> void:
 	$Crosshair.position = mouse_position * 50
 
 func take_damage():
-	print("damage taken")
+	health -= 1
+	if health <= 0:
+		print("dead")
 
 func _on_reload_timer_timeout() -> void:
 	can_shoot = true
