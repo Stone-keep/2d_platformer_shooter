@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://b5del6y0yh3ua" path="res://characters/player.gd" id="1_dnjla"]
 [ext_resource type="Texture2D" uid="uid://de5wf7al0hknv" path="res://graphics/characters/player.png" id="2_3eadt"]
 [ext_resource type="Texture2D" uid="uid://otyoj5px7yk7" path="res://graphics/ui/crosshair.png" id="3_tory2"]
+[ext_resource type="Texture2D" uid="uid://dijla4pisrrw8" path="res://graphics/lights/main.png" id="4_x0jl3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6p3mc"]
 radius = 8.0
@@ -129,5 +130,8 @@ y_sort_enabled = true
 position = Vector2(21, -13)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_tory2")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1094675968]
+texture = ExtResource("4_x0jl3")
 
 [connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]

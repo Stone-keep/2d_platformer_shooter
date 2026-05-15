@@ -5,6 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://cgh7234wked4l" path="res://graphics/tilesets/walls.png" id="3_mx8sn"]
 [ext_resource type="Texture2D" uid="uid://c7v0ifpdabs2i" path="res://graphics/tilesets/subway.png" id="3_w8frs"]
 [ext_resource type="PackedScene" uid="uid://5dalu1fxud6b" path="res://characters/drone.tscn" id="5_ppgk2"]
+[ext_resource type="Texture2D" uid="uid://cbn5tc4c0ckcp" path="res://graphics/lights/l2.png" id="6_2r41h"]
+[ext_resource type="Texture2D" uid="uid://6j2he24a4uda" path="res://graphics/lights/l3.png" id="7_klq6b"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b121j"]
 texture = ExtResource("3_w8frs")
@@ -3249,6 +3251,12 @@ texture = ExtResource("3_w8frs")
 [sub_resource type="TileSet" id="TileSet_b121j"]
 sources/0 = SubResource("TileSetAtlasSource_klq6b")
 
+[sub_resource type="Gradient" id="Gradient_ppgk2"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2r41h"]
+gradient = SubResource("Gradient_ppgk2")
+fill_from = Vector2(0.42173913, 0.50869566)
+
 [node name="Level" type="Node2D" unique_id=355876852]
 script = ExtResource("1_w7c3h")
 
@@ -3286,9 +3294,6 @@ position = Vector2(379, 197)
 
 [node name="Drone" parent="Characters/Drones" unique_id=1338547764 instance=ExtResource("5_ppgk2")]
 position = Vector2(1042, 171)
-
-[node name="Drone20" parent="Characters/Drones" unique_id=378681873 instance=ExtResource("5_ppgk2")]
-position = Vector2(1042, 157)
 
 [node name="Drone2" parent="Characters/Drones" unique_id=873422091 instance=ExtResource("5_ppgk2")]
 position = Vector2(1370, 159)
@@ -3345,5 +3350,151 @@ position = Vector2(2234, 715)
 position = Vector2(2202, 752)
 
 [node name="Bullets" type="Node2D" parent="." unique_id=1562904681]
+
+[node name="Lights" type="Node2D" parent="." unique_id=1802454114]
+
+[node name="GlobalLight" type="DirectionalLight2D" parent="Lights" unique_id=1241941825]
+color = Color(0.4351923, 0.43519226, 0.43519235, 1)
+blend_mode = 2
+
+[node name="Doors" type="Node2D" parent="Lights" unique_id=662282942]
+
+[node name="DoorLight" type="PointLight2D" parent="Lights/Doors" unique_id=1455770196]
+position = Vector2(2263.2502, 207)
+scale = Vector2(1.7734386, 1.5312495)
+color = Color(0.796243, 0.796243, 0.796243, 1)
+texture = SubResource("GradientTexture2D_2r41h")
+
+[node name="DoorLight2" type="PointLight2D" parent="Lights/Doors" unique_id=1308297669]
+position = Vector2(2263.125, 479.62503)
+scale = Vector2(1.7773454, 1.5429684)
+color = Color(0.796243, 0.796243, 0.796243, 1)
+texture = SubResource("GradientTexture2D_2r41h")
+
+[node name="DoorLight3" type="PointLight2D" parent="Lights/Doors" unique_id=1864686189]
+position = Vector2(2263.125, 752.125)
+scale = Vector2(1.7773454, 1.5585932)
+color = Color(0.796243, 0.796243, 0.796243, 1)
+texture = SubResource("GradientTexture2D_2r41h")
+
+[node name="Signs" type="Node2D" parent="Lights" unique_id=601706858]
+
+[node name="SmallSignLight01" type="PointLight2D" parent="Lights/Signs" unique_id=1326627236]
+position = Vector2(312, 184)
+energy = 0.6
+texture = ExtResource("6_2r41h")
+
+[node name="SignLightHorizontal01" type="PointLight2D" parent="Lights/Signs" unique_id=1853843089]
+position = Vector2(496, 184)
+energy = 0.6
+texture = ExtResource("7_klq6b")
+
+[node name="SignLightHorizontal02" type="PointLight2D" parent="Lights/Signs" unique_id=690847956]
+position = Vector2(1200, 185)
+energy = 0.6
+texture = ExtResource("7_klq6b")
+
+[node name="SignLightHorizontal19" type="PointLight2D" parent="Lights/Signs" unique_id=939327724]
+position = Vector2(1040, 281)
+energy = 0.6
+texture = ExtResource("7_klq6b")
+
+[node name="SignLightHorizontal03" type="PointLight2D" parent="Lights/Signs" unique_id=1163728754]
+position = Vector2(1728, 184)
+energy = 0.6
+texture = ExtResource("7_klq6b")
+
+[node name="SignLightHorizontal04" type="PointLight2D" parent="Lights/Signs" unique_id=2092724839]
+position = Vector2(1824, 232)
+energy = 0.6
+texture = ExtResource("7_klq6b")
+
+[node name="SignLightHorizontal05" type="PointLight2D" parent="Lights/Signs" unique_id=944697227]
+position = Vector2(2144, 472)
+energy = 0.6
+texture = ExtResource("7_klq6b")
+
+[node name="SignLightHorizontal18" type="PointLight2D" parent="Lights/Signs" unique_id=1351290084]
+position = Vector2(2176, 568)
+energy = 0.6
+texture = ExtResource("7_klq6b")
+
+[node name="SignLightHorizontal06" type="PointLight2D" parent="Lights/Signs" unique_id=445135622]
+position = Vector2(1775, 473)
+energy = 0.6
+texture = ExtResource("7_klq6b")
+
+[node name="SignLightHorizontal07" type="PointLight2D" parent="Lights/Signs" unique_id=529375339]
+position = Vector2(1504, 536)
+energy = 0.6
+texture = ExtResource("7_klq6b")
+
+[node name="SignLightHorizontal08" type="PointLight2D" parent="Lights/Signs" unique_id=1184657744]
+position = Vector2(1280, 473)
+energy = 0.6
+texture = ExtResource("7_klq6b")
+
+[node name="SignLightHorizontal09" type="PointLight2D" parent="Lights/Signs" unique_id=529725225]
+position = Vector2(831, 473)
+energy = 0.6
+texture = ExtResource("7_klq6b")
+
+[node name="SignLightHorizontal10" type="PointLight2D" parent="Lights/Signs" unique_id=971472016]
+position = Vector2(688, 552)
+energy = 0.6
+texture = ExtResource("7_klq6b")
+
+[node name="SignLightHorizontal11" type="PointLight2D" parent="Lights/Signs" unique_id=1973840612]
+position = Vector2(368, 744)
+energy = 0.6
+texture = ExtResource("7_klq6b")
+
+[node name="SignLightHorizontal12" type="PointLight2D" parent="Lights/Signs" unique_id=215934439]
+position = Vector2(305, 824)
+energy = 0.6
+texture = ExtResource("7_klq6b")
+
+[node name="SignLightHorizontal13" type="PointLight2D" parent="Lights/Signs" unique_id=368932916]
+position = Vector2(768, 744)
+energy = 0.6
+texture = ExtResource("7_klq6b")
+
+[node name="SignLightHorizontal14" type="PointLight2D" parent="Lights/Signs" unique_id=1743038770]
+position = Vector2(1121, 744)
+energy = 0.6
+texture = ExtResource("7_klq6b")
+
+[node name="SignLightHorizontal15" type="PointLight2D" parent="Lights/Signs" unique_id=193759419]
+position = Vector2(1472, 743)
+energy = 0.6
+texture = ExtResource("7_klq6b")
+
+[node name="SignLightHorizontal16" type="PointLight2D" parent="Lights/Signs" unique_id=1308938526]
+position = Vector2(1504, 824)
+energy = 0.6
+texture = ExtResource("7_klq6b")
+
+[node name="SignLightHorizontal17" type="PointLight2D" parent="Lights/Signs" unique_id=2035375514]
+position = Vector2(1824, 744)
+energy = 0.6
+texture = ExtResource("7_klq6b")
+
+[node name="SignLightVertical01" type="PointLight2D" parent="Lights/Signs" unique_id=198512852]
+position = Vector2(2184, 206)
+rotation = 1.5707964
+energy = 0.6
+texture = ExtResource("7_klq6b")
+
+[node name="SignLightVertical02" type="PointLight2D" parent="Lights/Signs" unique_id=774731206]
+position = Vector2(424, 463)
+rotation = 1.5707964
+energy = 0.6
+texture = ExtResource("7_klq6b")
+
+[node name="SignLightVertical03" type="PointLight2D" parent="Lights/Signs" unique_id=531778486]
+position = Vector2(2184, 751)
+rotation = 1.5707964
+energy = 0.6
+texture = ExtResource("7_klq6b")
 
 [connection signal="player_shot" from="Characters/Player" to="." method="_on_player_shot"]

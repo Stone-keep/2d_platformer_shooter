@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://vyr0ks75oxum" path="res://graphics/characters/drone.png" id="1_j5kob"]
 [ext_resource type="Script" uid="uid://dq85k8dxmkplg" path="res://characters/drone.gd" id="1_ljk1q"]
 [ext_resource type="Texture2D" uid="uid://bav7n447bnsa5" path="res://graphics/fire/explosion.png" id="3_83g50"]
+[ext_resource type="Texture2D" uid="uid://dijla4pisrrw8" path="res://graphics/lights/main.png" id="4_3xcvv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j5kob"]
 radius = 6.0827627
@@ -39,6 +40,30 @@ tracks/1/keys = {
 "update": 1,
 "values": [0]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RedLight:energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.3]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ExplosionLight:energy")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_3xcvv"]
 resource_name = "explosion"
@@ -69,10 +94,22 @@ tracks/1/keys = {
 "method": &"explosion_aoe_damage"
 }]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ExplosionLight:energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [2.0, 0.0]
+}
 
 [sub_resource type="Animation" id="Animation_ljk1q"]
 resource_name = "fly"
-length = 0.4
+length = 0.8
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -81,10 +118,22 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [0, 1]
+"values": [0, 1, 2, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RedLight:energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.3, 1.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_83g50"]
@@ -107,14 +156,17 @@ collision_mask = 11
 script = ExtResource("1_ljk1q")
 
 [node name="CollisionBody" type="CollisionShape2D" parent="." unique_id=1824903608]
+visible = false
 position = Vector2(0, 2)
 shape = SubResource("CircleShape2D_j5kob")
 
 [node name="CollisionLeftRotor" type="CollisionShape2D" parent="." unique_id=453518351]
+visible = false
 position = Vector2(-6, -4)
 shape = SubResource("CircleShape2D_ljk1q")
 
 [node name="CollisionRightRotor" type="CollisionShape2D" parent="." unique_id=170681550]
+visible = false
 position = Vector2(7, -4)
 shape = SubResource("CircleShape2D_83g50")
 
@@ -131,6 +183,7 @@ collision_layer = 4
 collision_mask = 10
 
 [node name="HurtBoxShape" type="CollisionShape2D" parent="HurtBox" unique_id=753282730]
+visible = false
 position = Vector2(0, -1)
 shape = SubResource("CircleShape2D_3xcvv")
 
@@ -148,8 +201,22 @@ collision_layer = 4
 collision_mask = 7
 
 [node name="ExplosionShape" type="CollisionShape2D" parent="ExplosionRange" unique_id=862437965]
+visible = false
 position = Vector2(0, -1)
 shape = SubResource("CircleShape2D_5rs0l")
+
+[node name="RedLight" type="PointLight2D" parent="." unique_id=1182192515]
+position = Vector2(-3, 2)
+color = Color(0.91227055, 4.7168137e-06, 6.738305e-07, 1)
+energy = 0.3
+texture = ExtResource("4_3xcvv")
+texture_scale = 0.05
+
+[node name="ExplosionLight" type="PointLight2D" parent="." unique_id=1625008859]
+color = Color(0.99999994, 0.5953963, 0.19401479, 1)
+energy = 0.0
+texture = ExtResource("4_3xcvv")
+texture_scale = 0.3
 
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="body_entered" from="HurtBox" to="." method="_on_hurtbox_body_entered"]

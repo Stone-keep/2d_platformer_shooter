@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://nss02ym145bd" path="res://graphics/fire/default.png" id="1_1hbe6"]
 [ext_resource type="Script" uid="uid://m4xgvo8jv6kk" path="res://bullets/bullet.gd" id="1_3ndsa"]
+[ext_resource type="Texture2D" uid="uid://dijla4pisrrw8" path="res://graphics/lights/main.png" id="3_ascq4"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3ndsa"]
 radius = 2.0
@@ -22,6 +23,12 @@ shape = SubResource("CapsuleShape2D_3ndsa")
 
 [node name="OnScreen" type="VisibleOnScreenNotifier2D" parent="." unique_id=771946130]
 rect = Rect2(-2, -1, 4, 2)
+
+[node name="Light" type="PointLight2D" parent="." unique_id=985216226]
+scale = Vector2(2, 1)
+color = Color(0.90997434, 0.75735074, 0.29295808, 1)
+texture = ExtResource("3_ascq4")
+texture_scale = 0.05
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="OnScreen" to="." method="_on_screen_exited"]

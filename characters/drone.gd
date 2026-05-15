@@ -21,8 +21,12 @@ func explode() -> void:
 		return
 	is_exploding = true
 	velocity = Vector2.ZERO
+	$CollisionBody.set_deferred("disabled", "true")
+	$CollisionLeftRotor.set_deferred("disabled", "true")
+	$CollisionRightRotor.set_deferred("disabled", "true")
 	$Sprite2D.hide()
 	$Explosion.show()
+	$ExplosionLight.show()
 	$AnimationPlayer.play("explosion")
 	await $AnimationPlayer.animation_finished
 	queue_free()
