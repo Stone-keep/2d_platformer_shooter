@@ -3305,7 +3305,7 @@ tile_set = SubResource("TileSet_b121j")
 [node name="Characters" type="Node2D" parent="." unique_id=65717785]
 
 [node name="Player" parent="Characters" unique_id=1129127801 instance=ExtResource("1_2q6dc")]
-position = Vector2(2228, 228)
+position = Vector2(376, 216)
 
 [node name="Drones" type="Node2D" parent="Characters" unique_id=755856068]
 
